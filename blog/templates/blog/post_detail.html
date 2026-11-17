@@ -1,0 +1,13 @@
+{% extends 'catalog/base.html' %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ post.title }}</h1>
+    <p class="text-muted">Опубликовано: {{ post.created_at|date:"d.m.Y H:i" }} | Просмотров: {{ post.views_count }}</p>
+    {% if post.preview %}
+        <img src="{{ post.preview.url }}" class="img-fluid mb-4 rounded" style="max-height: 400px;">
+    {% endif %}
+    <div class="fs-5">{{ post.content|linebreaks }}</div>
+    <a href="{% url 'blog:post_list' %}" class="btn btn-secondary mt-4">← Назад к списку</a>
+</div>
+{% endblock %}
